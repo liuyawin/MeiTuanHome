@@ -6,12 +6,14 @@ import {
 } from 'react-navigation';
 
 import { connect } from 'dva';
-import IndexPage from './container/IndexPage';
+import LoginPage from './container/LoginPage';
+import RegisterPage from './container/RegisterPage';
 import Detail from './components/Detail';
 
 const AppNavigator = StackNavigator(
     {
-        TestPage: { screen: IndexPage },
+        TestPage: { screen: LoginPage },
+        RegisterPage: { screen: RegisterPage },        
         Detail: { screen: Detail },
     },
     {

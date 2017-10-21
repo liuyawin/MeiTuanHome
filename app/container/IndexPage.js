@@ -89,7 +89,6 @@ const SecondIconArr = [
 export default class IndexPage extends Component {
     static navigationOptions = {
         title: 'Index Page',
-
     };
     constructor() {
         super();

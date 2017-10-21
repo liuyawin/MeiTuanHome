@@ -6,7 +6,6 @@ export default {
     state: {},
     reducers: {
         getRecommendData(state, { payload }) {
-            console.log('4');
             state = {}
             state = { ...payload }
             return { ...state }
@@ -14,12 +13,9 @@ export default {
     },
     effects: {
         *getRecommendList({ payload }, { call, put }) {
-            console.log('2');
             const recommendList = yield call(recommend.getRecommendList)
-            console.log('3');
             if (recommendList) {
                 yield put(createAction('getRecommendData')({ recommendList }))
-                console.log('6');
             }
         },
     },

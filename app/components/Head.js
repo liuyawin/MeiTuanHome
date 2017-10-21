@@ -22,7 +22,7 @@ export default class Head extends Component {
                     <Text style={styles.searchText}>小吊梨汤</Text>
                 </View>
                 <TouchableOpacity>
-                    <Image style={styles.searcçhIcon} source={require('./../images/more.png')} />
+                    <Image style={styles.addIcon} source={require('./../images/more.png')} />
                 </TouchableOpacity>
             </View>
         )
@@ -55,6 +55,11 @@ const styles = StyleSheet.create({
         color: '#5E5E5E',
         alignSelf: 'center',
         marginLeft: pxTodp(10),
+    },
+    addIcon: {
+        width: pxTodp(48),
+        height: pxTodp(48),
+        marginLeft: pxTodp(24),
     },
     location: {
         height: pxTodp(58),
