@@ -8,7 +8,11 @@ export default {
         getCaptchaCode(state, { payload }) {
             state = {}
             state = { ...payload }
-            console.log({ ...state })
+            return { ...state }
+        },
+        doRegester(state, { payload }){
+            state = {}
+            state = { ...payload }
             return { ...state }
         },
     },
@@ -16,8 +20,14 @@ export default {
         *getCaptcha({ payload }, { call, put }) {
             const result = yield call(register.getCaptcha, payload)
             if (result) {
-                var code = result.code;
-                yield put(createAction('getCaptchaCode')({code}))
+                yield put(createAction('getCaptchaCode')(JSON.parse(result)))
+            }
+        },
+        *doRegister({ payload }, { call, put }){
+            const result = yield call(register.doRegister, payload)
+            console.log('result: ', result)
+            if (result) {
+                yield put(createAction('doRegester')(JSON.parse(result)))
             }
         },
     },

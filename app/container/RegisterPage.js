@@ -26,6 +26,7 @@ export default class RegisterPage extends Component {
             username: '',
             password: '',
             code: null,
+            test: true
         }
     }
 
@@ -34,12 +35,15 @@ export default class RegisterPage extends Component {
     }
 
     doRegister() {
-        this.props.dispatch(createAction('register/doRegister')());
+        this.props.dispatch(createAction('register/doRegister')({ username: this.state.username, password: this.state.password, captcha: this.state.captcha }));
     }
 
-    shouldComponentUpdate(nextProps, nextState){
-        console.log(nextProps);
-        console.log(nextState);
+    componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps', nextProps);
+        this.setState({
+            code: nextProps.code,
+            message: nextProps.message,
+        });
     }
 
     render() {
@@ -69,11 +73,11 @@ export default class RegisterPage extends Component {
                             autoCorrect={false}
                             password={true}
                             autoCapitalize={'none'}
-                            placeholder={"密码"}
+                            placeholder={"请填写6~16位数字或字母密码"}
                             onChangeText={(pwd) => { this.state.password = pwd }}
                         />
                     </View>
-                    {_this.state.code ? ['ha', 'ma'].map((text, key) => <Text>text</Text>) : null}
+                    
                     <View style={styles.inputBox}>
                         <TextInput
                             style={styles.input}
@@ -89,7 +93,7 @@ export default class RegisterPage extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                
+                {this.state.code === 0 ? <Text>注册成功！</Text> : <Text>{this.state.message}</Text>}
 
             </View>
         )

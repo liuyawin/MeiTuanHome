@@ -12,7 +12,7 @@ import { connect } from 'dva';
 import pxTodp from './../utils/pxTodp';
 import { NavigationActions, createAction } from './../utils';
 
-@connect()
+@connect(({ login }) => ({ ...login }))
 export default class LoginPage extends Component {
     static navigationOptions = {
         title: '登录',
@@ -22,7 +22,7 @@ export default class LoginPage extends Component {
         super();
         this.state = {
             username: '',
-            pwdword: '',
+            password: '',
         }
     }
 
@@ -35,8 +35,7 @@ export default class LoginPage extends Component {
     }
 
     doLogin(){
-        alert(this.state.username);
-        alert(this.state.pwdword);
+        this.props.dispatch(createAction('login/passwdLogin')({ username: this.state.username, password: this.state.password }));
     }
 
     render() {
@@ -63,7 +62,7 @@ export default class LoginPage extends Component {
                             maxLength={40}
                             autoCorrect={false}
                             autoCapitalize={'none'}
-                            onChangeText={(pwd)=>{this.state.pwdword=pwd}}
+                            onChangeText={(pwd)=>{this.state.password=pwd}}
                         />
                     </View>
                     <View style={styles.inputBox}>
